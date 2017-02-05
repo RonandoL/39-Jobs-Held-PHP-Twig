@@ -22,10 +22,10 @@
 
   // 2. POST Route for sending instantiated new object (new task) to /tasks URL
     $app->post('/jobs', function() use ($app) {
-        $job = new Job($_POST['title']);
+        $job = new Job(ucfirst($_POST['title']), number_format($_POST['amount-paid']), ucfirst($_POST['employer']));
         $save = $job->save();
 
-        return $app['twig']->render('new_job.html.twig', array('newtitle' => $job));
+        return $app['twig']->render('new_job.html.twig', array('newjob' => $job, 'jobs' => Job::getAll()));
     });
 
   // 3. POST Route for delete page, deleting all jobs, emptying array
@@ -36,14 +36,6 @@
     });
 
 
-
-
-
-  // 3. Route for deleting all tasks
-    // $app->post('/e', funce () {
-    //     xxxxxxxxxxxx;
-    //     r ('');
-    // });
 
     return $app;
 

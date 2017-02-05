@@ -10,13 +10,21 @@
 
     <div class='container'>
       <div class='row'>
-        <div class='col-md-4'>
+        <div class='col-md-6'>
           <h2>My Job History</h2>
 
           <form action='/jobs' method='post'>
             <div class='form-group'>
               <label for='title'>Enter Job Title Here</label>
               <input type='text' name='title' id='title' class='form-control' placeholder='i.e. Sniper' autofocus>
+            </div>
+            <div class='form-group'>
+              <label for='amount-paid'>Enter amount you were paid for this job</label>
+              <input type='number' name='amount-paid' id='amount-paid' class='form-control' placeholder='i.e. 75000'>
+            </div>
+            <div class='form-group'>
+              <label for='employer'>Who was the employer?</label>
+              <input type='text' name='employer' id='employer' class='form-control' placeholder='i.e. Nike'>
             </div>
             <button type='submit' class='btn btn-sm btn-danger'>Submit Job Title</button>
           </form>
@@ -26,21 +34,25 @@
             <button type='submit' class='btn btn-sm'>Delete All Jobs</button>
           </form>
 
-        </div>  <!-- .col-md-3 -->
+        </div>  <!-- .col-md-5 -->
       </div>  <!-- .row -->
 
       <div class='row'>
-          <div class='col-md-3'>
+          <div class='col-md-6'>
               <hr>
               {% if jobs is not empty %}
                   <h4>All of my past jobs</h4>
                   <ul>
                   {% for job in jobs %}
-                      <li>{{ job.getTitle }}</li>
+                      <li>
+                        <b>Employer: </b> {{ job.getEmployer }},
+                        <b>Job Title:</b> {{ job.getTitle }},
+                        <b>Salary: </b> ${{ job.getPay }}/year
+                      </li>
                   {% endfor %}
                   </ul>
               {% endif %}
-          </div>
+          </div>  <!-- .col-md-6 -->
       </div>  <!-- .row -->
     </div>  <!-- .container -->
 
