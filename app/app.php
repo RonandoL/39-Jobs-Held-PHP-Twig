@@ -28,6 +28,12 @@
         return $app['twig']->render('new_job.html.twig', array('newtitle' => $job));
     });
 
+  // 3. POST Route for delete page, deleting all jobs, emptying array
+    $app->post('/delete', function() use ($app) {
+        $delete = Job::deleteAll();
+
+        return $app['twig']->render('delete_job.html.twig');
+    });
 
 
 
